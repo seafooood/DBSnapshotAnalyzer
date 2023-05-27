@@ -3,11 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.33627.172
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DBSnapshotAnalyzer.Console", "DBSnapshotAnalyzer.Console\DBSnapshotAnalyzer.Console.csproj", "{FF7D9FFD-2E9D-42B1-A646-6003378626DC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DBSnapshotAnalyzer.Console", "DBSnapshotAnalyzer.Console\DBSnapshotAnalyzer.Console.csproj", "{FF7D9FFD-2E9D-42B1-A646-6003378626DC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DBSnapshotAnalyzer.Snapshot", "DBSnapshotAnalyzer.Snapshot\DBSnapshotAnalyzer.Snapshot.csproj", "{C005A3EB-FCB6-4086-A2AC-E4E1EAE86F28}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DBSnapshotAnalyzer.Snapshot", "DBSnapshotAnalyzer.Snapshot\DBSnapshotAnalyzer.Snapshot.csproj", "{C005A3EB-FCB6-4086-A2AC-E4E1EAE86F28}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DBSnapshotAnalyzer.Snapshot.UT", "DBSnapshotAnalyzer.Snapshot.UT\DBSnapshotAnalyzer.Snapshot.UT.csproj", "{FF96C7CC-A133-4EDB-86A6-E73F99ED0127}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DBSnapshotAnalyzer.Snapshot.UT", "DBSnapshotAnalyzer.Snapshot.UT\DBSnapshotAnalyzer.Snapshot.UT.csproj", "{FF96C7CC-A133-4EDB-86A6-E73F99ED0127}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DBSnapshotAnalyzer.Compare", "DBSnapshotAnalyzer.Compare\DBSnapshotAnalyzer.Compare.csproj", "{22D1563C-AF76-48BB-97C7-078E39F72688}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DBSnapshotAnalyzer.Compare.UT", "DBSnapshotAnalyzer.Compare.UT\DBSnapshotAnalyzer.Compare.UT.csproj", "{11A025F1-B6EF-4BAD-AC4F-26A41858DF61}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +31,14 @@ Global
 		{FF96C7CC-A133-4EDB-86A6-E73F99ED0127}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FF96C7CC-A133-4EDB-86A6-E73F99ED0127}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FF96C7CC-A133-4EDB-86A6-E73F99ED0127}.Release|Any CPU.Build.0 = Release|Any CPU
+		{22D1563C-AF76-48BB-97C7-078E39F72688}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{22D1563C-AF76-48BB-97C7-078E39F72688}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{22D1563C-AF76-48BB-97C7-078E39F72688}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{22D1563C-AF76-48BB-97C7-078E39F72688}.Release|Any CPU.Build.0 = Release|Any CPU
+		{11A025F1-B6EF-4BAD-AC4F-26A41858DF61}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{11A025F1-B6EF-4BAD-AC4F-26A41858DF61}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{11A025F1-B6EF-4BAD-AC4F-26A41858DF61}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{11A025F1-B6EF-4BAD-AC4F-26A41858DF61}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

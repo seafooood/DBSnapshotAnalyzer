@@ -9,3 +9,9 @@
 /DBSnapshotAnalyzer.Snapshot/bin/Debug/net7.0
 /DBSnapshotAnalyzer.Snapshot/obj
 /DBSnapshotAnalyzer.Snapshot.UT/obj
+/.vs
+/DBSnapshotAnalyzer.Compare/bin/Debug/net7.0
+/DBSnapshotAnalyzer.Compare/obj
+/DBSnapshotAnalyzer.Compare.UT/bin/Debug/net7.0
+/DBSnapshotAnalyzer.Compare.UT/obj
+/DBSnapshotAnalyzer.Snapshot.UT/bin/Debug/net7.0

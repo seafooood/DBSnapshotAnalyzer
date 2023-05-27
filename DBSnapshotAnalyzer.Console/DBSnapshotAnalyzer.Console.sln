@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.33627.172
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DBSnapshotAnalyzer.Console", "DBSnapshotAnalyzer.Console\DBSnapshotAnalyzer.Console.csproj", "{A4F7ED75-D9CA-4044-BAE4-2CBA9C5BE6EB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A4F7ED75-D9CA-4044-BAE4-2CBA9C5BE6EB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A4F7ED75-D9CA-4044-BAE4-2CBA9C5BE6EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A4F7ED75-D9CA-4044-BAE4-2CBA9C5BE6EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A4F7ED75-D9CA-4044-BAE4-2CBA9C5BE6EB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {322D8C1A-D149-424A-A30D-53762CBE8EB0}
+	EndGlobalSection
+EndGlobal

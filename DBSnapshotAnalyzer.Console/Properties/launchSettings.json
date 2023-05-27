@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "DBSnapshotAnalyzer.Console": {
+      "commandName": "Project",
+      "commandLineArgs": "s \"c:\\s1\""
+    }
+  }
+}

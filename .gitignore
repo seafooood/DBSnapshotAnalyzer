@@ -1,0 +1,11 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/.vs/DBSnapshotAnalyzer
+/DBSnapshotAnalyzer.Console/.vs
+/DBSnapshotAnalyzer.Console/bin/Debug/net7.0
+/DBSnapshotAnalyzer.Console/obj
+/DBSnapshotAnalyzer.Snapshot/bin/Debug/net7.0
+/DBSnapshotAnalyzer.Snapshot/obj
+/DBSnapshotAnalyzer.Snapshot.UT/obj

@@ -1,16 +1,11 @@
 ﻿using DBSnapshotAnalyzer.Compare.Models;
 using DBSnapshotAnalyzer.Snapshot.Services;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DBSnapshotAnalyzer.Compare
 {
     public class SnapshotAnalyzer
     {
-        public void TakeSnapshot(string connectionString, String, string outputFolder)
+        public void TakeSnapshot(string connectionString, string outputFolder)
         {
             var db = new DatabaseServiceOracle(connectionString);
             var snapshot = new Snapshot.Models.Snapshot(db);
@@ -23,10 +18,10 @@ namespace DBSnapshotAnalyzer.Compare
             return cs.CompareAndSave(s1, s2, outputFile);
         }
 
-        public List<Comparison> AnalyzeComparisons(string v1, string v2, string outputFile = "")
+        public List<Comparison> AnalyzeComparisons(string c1, string c2, string outputFile = "")
         {
             var ct = new CompareTables();
-            return ct.CompareAndSave(v1, v2, outputFile);
+            return ct.CompareAndSave(c1, c2, outputFile);
         }
     }
 }

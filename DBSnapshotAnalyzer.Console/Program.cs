@@ -1,7 +1,4 @@
 ﻿using DBSnapshotAnalyzer.Compare;
-using DBSnapshotAnalyzer.Compare.Models;
-using DBSnapshotAnalyzer.Snapshot.Models;
-using DBSnapshotAnalyzer.Snapshot.Services;
 
 //TODO: Convert console logs to nlog
 Console.WriteLine("=== Starting DBSnapshotAnalyzer ===");
@@ -33,7 +30,8 @@ try
                 {
                     throw new Exception("Missing argument output file");
                 }
-                sa.TakeSnapshot(args[1]);
+                var connectionString = "Data Source=(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=localhost)(PORT=1521))(CONNECT_DATA=(SERVICE_NAME=XE)));User Id=bookshop;Password=mypassword;"; //TODO: Get connection string from settings
+                sa.TakeSnapshot(connectionString, args[1]);
                 break;
         }
     }

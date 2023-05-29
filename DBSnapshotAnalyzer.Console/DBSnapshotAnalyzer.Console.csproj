@@ -8,6 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\DBSnapshotAnalyzer.Compare\DBSnapshotAnalyzer.Compare.csproj" />
     <ProjectReference Include="..\DBSnapshotAnalyzer.Snapshot\DBSnapshotAnalyzer.Snapshot.csproj" />
   </ItemGroup>
 

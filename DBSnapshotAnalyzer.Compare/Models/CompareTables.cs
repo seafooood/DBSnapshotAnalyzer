@@ -1,22 +1,33 @@
 ﻿using DiffPlex.DiffBuilder.Model;
 using DiffPlex.DiffBuilder;
 using DiffPlex;
-using DBSnapshotAnalyzer.Common.Services;
 
 namespace DBSnapshotAnalyzer.Compare.Models
 {
-    public class CompareTables
-    {
+    public class CompareTables : CompareBase
+    {        
         /// <summary>
-        /// COmpare the contents of two files
+        /// Compare the contents of two files
         /// </summary>
         /// <param name="tableName"></param>
         /// <param name="file1"></param>
         /// <param name="file2"></param>
         /// <returns></returns>
-        public List<Comparison> CompareFiles(string tableName, string file1, string file2)
+        public override List<Comparison> Compare(string file1, string file2)
         {
-            return Compare(tableName, File.ReadAllText(file1), File.ReadAllText(file2));    
+            return CompareContent("", File.ReadAllText(file1), File.ReadAllText(file2));    
+        }
+
+        /// <summary>
+        /// Compare the contents of two files containing table data
+        /// </summary>
+        /// <param name="tableName"></param>
+        /// <param name="file1"></param>
+        /// <param name="file2"></param>
+        /// <returns></returns>
+        public List<Comparison> CompareTableFiles(string tableName, string file1, string file2)
+        {
+            return CompareContent(tableName, File.ReadAllText(file1), File.ReadAllText(file2));
         }
 
         /// <summary>
@@ -26,7 +37,7 @@ namespace DBSnapshotAnalyzer.Compare.Models
         /// <param name="tableContent1">Contents of table 1</param>
         /// <param name="tableContent2">Contents of table 2</param>
         /// <returns>Comparison List</returns>
-        public List<Comparison> Compare(string tableName, string tableContent1, string tableContent2)
+        public List<Comparison> CompareContent(string tableName, string tableContent1, string tableContent2)
         {
             var diffBuilder = new InlineDiffBuilder(new Differ());
             var diff = diffBuilder.BuildDiffModel(tableContent1, tableContent2);
@@ -67,27 +78,6 @@ namespace DBSnapshotAnalyzer.Compare.Models
             }
 
             throw new Exception($"Unable to convert ChangeType {type}");
-        }
-
-        /// <summary>
-        /// Save the results of a comparison
-        /// </summary>
-        /// <param name="filename"></param>
-        /// <param name="comparison"></param>
-        /// <exception cref="Exception"></exception>
-        public void Save(string filename, List<Comparison> comparison)
-        {
-            try
-            {
-                Console.WriteLine($"Saving file {filename}");
-                new FileSystemService().CreateFolderForOutputFile(filename);                
-                File.WriteAllText(filename, string.Join(Environment.NewLine, comparison));
-                Console.WriteLine($"Saved file {filename}");
-            }
-            catch(Exception ex) 
-            { 
-                throw new Exception($"Failed to save results of comparison to file {filename} because {ex.Message}");
-            }
-        }
+        }        
     }
 }

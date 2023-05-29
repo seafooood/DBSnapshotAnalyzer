@@ -2,7 +2,7 @@
 
 namespace DBSnapshotAnalyzer.Compare.Models
 {
-    public class CompareSnapshots
+    public class CompareSnapshots : CompareBase
     {
         /// <summary>
         /// Compare two snapshots
@@ -10,7 +10,7 @@ namespace DBSnapshotAnalyzer.Compare.Models
         /// <param name="snapshot1"></param>
         /// <param name="snapshot2"></param>
         /// <returns></returns>
-        public List<Comparison> Compare(string snapshot1, string snapshot2)
+        public override List<Comparison> Compare(string snapshot1, string snapshot2)
         {
             Console.WriteLine("Opening snapshot files");
             var zs = new ZipService();
@@ -33,7 +33,7 @@ namespace DBSnapshotAnalyzer.Compare.Models
 
                     if (File.Exists(filePath1) && File.Exists(filePath2))
                     {
-                        result.AddRange(ct.CompareFiles(tableName, filePath1, filePath2));
+                        result.AddRange(ct.CompareTableFiles(tableName, filePath1, filePath2));
                     }
                     else
                     {

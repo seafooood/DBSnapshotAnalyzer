@@ -20,7 +20,7 @@ namespace DBSnapshotAnalyzer.Compare.UT.Models
             var systemUnderTest = new CompareTables();
 
             // Act
-            var result = systemUnderTest.Compare(tableName, s1, s2);
+            var result = systemUnderTest.CompareContent(tableName, s1, s2);
 
             // Assert
             Assert.That(result, Is.TypeOf<List<Comparison>>()); // Confirm the object type
@@ -40,7 +40,7 @@ namespace DBSnapshotAnalyzer.Compare.UT.Models
             var systemUnderTest = new CompareTables();
 
             // Act
-            var result = systemUnderTest.Compare(tableName, s1, s2);
+            var result = systemUnderTest.CompareContent(tableName, s1, s2);
 
             // Assert
             Assert.That(result, Is.TypeOf<List<Comparison>>()); // Confirm the object type
@@ -66,7 +66,7 @@ namespace DBSnapshotAnalyzer.Compare.UT.Models
             var systemUnderTest = new CompareTables();
 
             // Act
-            var result = systemUnderTest.Compare(tableName, s1, s2);
+            var result = systemUnderTest.CompareContent(tableName, s1, s2);
 
             // Assert
             Assert.That(result, Is.TypeOf<List<Comparison>>()); // Confirm the object type
@@ -113,62 +113,6 @@ namespace DBSnapshotAnalyzer.Compare.UT.Models
 
             // Assert
             Assert.That(result, Is.EqualTo(Change.Deleted));
-        }
-
-        #endregion
-
-        #region Save Tests
-
-        [Test]
-        public void saveTest()
-        {
-            // Arrange
-            string tableName = "table1";
-            string row1 = "111,222,333";
-            string row2 = "aaa,bbb,ccc";
-            Change change1 = Change.Inserted;
-            Change change2 = Change.Deleted;
-            var c1 = new Comparison() { TableName = tableName, Change = change1, Row = row1 };
-            var c2 = new Comparison() { TableName = tableName, Change = change2, Row = row2 };
-            var systemUnderTest = new CompareTables();
-
-            // Act
-            systemUnderTest.Save(_fileName, new List<Comparison> { c1, c2});
-
-            // Assert
-            Assert.That(File.Exists(_fileName)); // Confirm the file has been created
-            Assert.That(File.ReadAllText(_fileName), Is.EqualTo($"{tableName}{change1.ToFriendlyString()}{row1}" + Environment.NewLine + $"{tableName}{change2.ToFriendlyString()}{row2}")); // Confirm the file content
-        }
-
-        #endregion
-
-        #region Setup Up and Tear Down
-
-        string _fileName = @"c:\temp\unittest.txt";
-
-        [SetUp]
-        public void SetUp()
-        {
-            DeleteUnitTestFile();
-        }
-
-        [TearDown]
-        public void TearDown()
-        {
-            DeleteUnitTestFile();
-        }
-
-        private void DeleteUnitTestFile()
-        {
-            try
-            {
-                if (File.Exists(_fileName))
-                {
-                    File.Delete(_fileName);
-                }
-            }
-            catch (Exception)
-            { }
         }
 
         #endregion

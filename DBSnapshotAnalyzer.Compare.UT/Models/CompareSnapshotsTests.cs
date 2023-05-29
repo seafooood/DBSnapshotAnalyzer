@@ -5,6 +5,8 @@ namespace DBSnapshotAnalyzer.Compare.UT.Models
     [TestFixture]
     public class CompareSnapshotsTests
     {
+        #region Compare Tests
+
         [Test]
         public void CompareSnapshot_ChangeInS2Test() 
         {
@@ -26,5 +28,7 @@ namespace DBSnapshotAnalyzer.Compare.UT.Models
             Assert.That(result[1].Change, Is.EqualTo(Change.Inserted)); // Confirm line from s2 was added
             Assert.That(result[1].TableName, Is.EqualTo("BOOKS")); // Confirm the table name
         }
+
+        #endregion
     }
 }

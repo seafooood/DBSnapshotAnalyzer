@@ -2,7 +2,7 @@
   "profiles": {
     "DBSnapshotAnalyzer.Console": {
       "commandName": "Project",
-      "commandLineArgs": "s \"c:\\s1\""
+      "commandLineArgs": "s \"c:\\s1\\s1.zip\""
     }
   }
 }

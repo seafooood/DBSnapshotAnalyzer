@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data;
 using System.IO;
+using DBSnapshotAnalyzer.Common.Services;
 using DBSnapshotAnalyzer.Snapshot.Interfaces;
 
 namespace DBSnapshotAnalyzer.Snapshot.Models
@@ -27,35 +28,19 @@ namespace DBSnapshotAnalyzer.Snapshot.Models
         /// <summary>
         /// Take snapshot
         /// </summary>
-        /// <param name="outputFolder">Snapshot output folder</param>
-        public void Take(string outputFolder)
+        /// <param name="outputFolder">Snapshot output file</param>
+        public void Take(string snapshotFilename)
         {
+            var fss = new FileSystemService();
+            string outputFolder = fss.CreateTemporaryFolder();
+
             foreach (var tableName in _db.GetTableNames())
             {
                 ExportTable(tableName, outputFolder);
             }
-        }
 
-        /// <summary>
-        /// Create output folder
-        /// </summary>
-        /// <param name="outputFolder">Snapshot output folder</param>
-        /// <exception cref="Exception"></exception>
-        public void CreateOutputFolder(string outputFolder)
-        {
-            try
-            {
-                Console.WriteLine($"Checking output folder {outputFolder}");
-                if (Directory.Exists(outputFolder) == false)
-                {
-                    Console.WriteLine($"Creating output folder {outputFolder}");
-                    Directory.CreateDirectory(outputFolder);
-                }
-            }
-            catch (Exception ex)
-            {
-                throw new Exception($"Failed to create output folder {outputFolder} because {ex.Message}", ex);
-            }
+            var zs = new ZipService();
+            zs.SaveSnapshot(snapshotFilename, outputFolder);
         }
 
         /// <summary>

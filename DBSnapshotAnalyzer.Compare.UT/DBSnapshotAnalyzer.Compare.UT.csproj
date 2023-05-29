@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net7.0</TargetFramework>
@@ -19,6 +19,15 @@
 
   <ItemGroup>
     <ProjectReference Include="..\DBSnapshotAnalyzer.Compare\DBSnapshotAnalyzer.Compare.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="TestData\s1.zip">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\s2.zip">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>

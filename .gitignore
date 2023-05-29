@@ -15,3 +15,5 @@
 /DBSnapshotAnalyzer.Compare.UT/bin/Debug/net7.0
 /DBSnapshotAnalyzer.Compare.UT/obj
 /DBSnapshotAnalyzer.Snapshot.UT/bin/Debug/net7.0
+/DBSnapshotAnalyzer.Common/bin/Debug/net7.0
+/DBSnapshotAnalyzer.Common/obj

@@ -13,7 +13,7 @@ try
             case "snapshot":
                 if (args.Length < 1)
                 {
-                    throw new Exception("Missing argument output folder");
+                    throw new Exception("Missing argument output file");
                 }
                 TakeSnapshot(args[1]);
                 break;

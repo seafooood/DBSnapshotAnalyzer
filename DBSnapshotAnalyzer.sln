@@ -9,9 +9,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DBSnapshotAnalyzer.Snapshot
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DBSnapshotAnalyzer.Snapshot.UT", "DBSnapshotAnalyzer.Snapshot.UT\DBSnapshotAnalyzer.Snapshot.UT.csproj", "{FF96C7CC-A133-4EDB-86A6-E73F99ED0127}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DBSnapshotAnalyzer.Compare", "DBSnapshotAnalyzer.Compare\DBSnapshotAnalyzer.Compare.csproj", "{22D1563C-AF76-48BB-97C7-078E39F72688}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DBSnapshotAnalyzer.Compare", "DBSnapshotAnalyzer.Compare\DBSnapshotAnalyzer.Compare.csproj", "{22D1563C-AF76-48BB-97C7-078E39F72688}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DBSnapshotAnalyzer.Compare.UT", "DBSnapshotAnalyzer.Compare.UT\DBSnapshotAnalyzer.Compare.UT.csproj", "{11A025F1-B6EF-4BAD-AC4F-26A41858DF61}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DBSnapshotAnalyzer.Compare.UT", "DBSnapshotAnalyzer.Compare.UT\DBSnapshotAnalyzer.Compare.UT.csproj", "{11A025F1-B6EF-4BAD-AC4F-26A41858DF61}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DBSnapshotAnalyzer.Common", "DBSnapshotAnalyzer.Common\DBSnapshotAnalyzer.Common.csproj", "{BA4F3349-9449-4248-BAB1-03D1218443C6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{11A025F1-B6EF-4BAD-AC4F-26A41858DF61}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{11A025F1-B6EF-4BAD-AC4F-26A41858DF61}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{11A025F1-B6EF-4BAD-AC4F-26A41858DF61}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BA4F3349-9449-4248-BAB1-03D1218443C6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BA4F3349-9449-4248-BAB1-03D1218443C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BA4F3349-9449-4248-BAB1-03D1218443C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BA4F3349-9449-4248-BAB1-03D1218443C6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

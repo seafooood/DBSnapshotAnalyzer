@@ -36,10 +36,16 @@ namespace DBSnapshotAnalyzer.Compare.Models
         /// <param name="snapshot1"></param>
         /// <param name="snapshot2"></param>
         /// <param name="outputFile"></param>
-        public void CompareAndSave(string snapshot1, string snapshot2, string outputFile)
+        public List<Comparison> CompareAndSave(string snapshot1, string snapshot2, string outputFile)
         {
             var result = Compare(snapshot1, snapshot2);
-            Save(outputFile, result);
+
+            if (String.IsNullOrEmpty(outputFile) == false)
+            {
+                Save(outputFile, result);
+            }
+
+            return result;
         }
 
         public virtual List<Comparison> Compare(string snapshot1, string snapshot2) 

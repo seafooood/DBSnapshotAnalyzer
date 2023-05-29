@@ -12,6 +12,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\DBSnapshotAnalyzer.Common\DBSnapshotAnalyzer.Common.csproj" />
+    <ProjectReference Include="..\DBSnapshotAnalyzer.Snapshot\DBSnapshotAnalyzer.Snapshot.csproj" />
   </ItemGroup>
 
 </Project>

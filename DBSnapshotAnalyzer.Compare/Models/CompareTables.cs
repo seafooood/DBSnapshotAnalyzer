@@ -1,11 +1,19 @@
 ﻿using DiffPlex;
 using DiffPlex.DiffBuilder;
 using DiffPlex.DiffBuilder.Model;
+using NLog;
 
 namespace DBSnapshotAnalyzer.Compare.Models
 {
     public class CompareTables : CompareBase
     {
+        #region Constructor
+        public CompareTables(ILogger log) : base(log)
+        {
+        }
+        #endregion
+
+        #region Public Methods
         /// <summary>
         /// Compare the contents of two files
         /// </summary>
@@ -79,5 +87,6 @@ namespace DBSnapshotAnalyzer.Compare.Models
 
             throw new Exception($"Unable to convert ChangeType {type}");
         }
+        #endregion
     }
 }

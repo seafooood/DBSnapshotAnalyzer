@@ -1,5 +1,6 @@
 ﻿using DBSnapshotAnalyzer.Common.Interfaces;
 using DBSnapshotAnalyzer.Snapshot.Interfaces;
+using NLog;
 using System.Data;
 
 namespace DBSnapshotAnalyzer.Snapshot.Models
@@ -7,6 +8,7 @@ namespace DBSnapshotAnalyzer.Snapshot.Models
     public class Snapshot
     {
         #region Private Members
+        private readonly ILogger _log;
         private readonly IDatabaseService _db;
         private readonly IFileSystemService _fileSystem;
         private readonly IZipService _zip;
@@ -17,8 +19,9 @@ namespace DBSnapshotAnalyzer.Snapshot.Models
         /// Constructor
         /// </summary>
         /// <param name="db">Database connection</param>
-        public Snapshot(IDatabaseService db, IFileSystemService fileSystemService, IZipService zipService)
+        public Snapshot(ILogger log, IDatabaseService db, IFileSystemService fileSystemService, IZipService zipService)
         {
+            _log = log;
             _db = db;
             _fileSystem = fileSystemService;
             _zip = zipService;
@@ -51,17 +54,17 @@ namespace DBSnapshotAnalyzer.Snapshot.Models
         {
             try
             {
-                Console.WriteLine($"Taking snapshot of table {tableName}");
+                _log.Trace($"Taking snapshot of table {tableName}");
                 var dataTable = _db.GetTableData(tableName);
 
-                Console.WriteLine($"\tExporting snapshot of table {tableName}");
+                _log.Trace($"\tExporting snapshot of table {tableName}");
                 var outputFile = Path.Combine(outputFolder, tableName + ".csv");
                 ExportDataTableToCsv(dataTable, outputFile);
-                Console.WriteLine($"\tExported table {tableName} to file {outputFile}");
+                _log.Trace($"\tExported table {tableName} to file {outputFile}");
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"\tFailed to export {tableName} because {ex.Message}", ex);
+                _log.Error(ex, $"\tFailed to export {tableName} because {ex.Message}");
             }
         }
 

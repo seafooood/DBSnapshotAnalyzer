@@ -1,15 +1,25 @@
 ﻿using DBSnapshotAnalyzer.Common.Interfaces;
 using Ionic.Zip;
+using NLog;
 
 namespace DBSnapshotAnalyzer.Common.Services
 {
     public class ZipService : IZipService
     {
+        #region Private Members
+        private readonly ILogger _log;
         IFileSystemService _fileSystemService;
-        public ZipService(IFileSystemService fileSystemService)
+        #endregion
+
+        #region Constructor
+        public ZipService(ILogger log, IFileSystemService fileSystemService)
         {
+            _log = log;
             _fileSystemService = fileSystemService;
         }
+        #endregion
+
+        #region Public Methods
         /// <summary>
         /// Open a snapshot file
         /// </summary>
@@ -29,12 +39,14 @@ namespace DBSnapshotAnalyzer.Common.Services
         /// <param name="directoryToZip"></param>
         public void SaveSnapshot(string snapshotFile, string directoryToZip)
         {
-            Console.WriteLine("Saving snapshot");
+            _log.Trace("Saving snapshot");
             ZipFolder(snapshotFile, directoryToZip);
             _fileSystemService.RemoveTemporaryFolder(directoryToZip);
-            Console.WriteLine($"Saved snapshot to {snapshotFile}");
+            _log.Trace($"Saved snapshot to {snapshotFile}");
         }
+        #endregion
 
+        #region Private Methods
         /// <summary>
         /// Create a zip file
         /// </summary>
@@ -84,5 +96,6 @@ namespace DBSnapshotAnalyzer.Common.Services
                 throw new Exception($"Failed to unzip file {zipFile} because {ex.Message}", ex);
             }
         }
+        #endregion
     }
 }

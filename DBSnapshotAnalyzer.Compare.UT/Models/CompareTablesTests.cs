@@ -1,4 +1,6 @@
 ﻿using DBSnapshotAnalyzer.Compare.Models;
+using Moq;
+using NLog;
 using System.Diagnostics.CodeAnalysis;
 
 namespace DBSnapshotAnalyzer.Compare.UT.Models
@@ -16,10 +18,11 @@ namespace DBSnapshotAnalyzer.Compare.UT.Models
         public void Compare_SameText()
         {
             // Arrange
+            var mockLogger = new Mock<ILogger>();
             string tableName = "table1";
             string s1 = "aaa,bbb,ccc\n111,222,333";
             string s2 = "aaa,bbb,ccc\n111,222,333";
-            var systemUnderTest = new CompareTables();
+            var systemUnderTest = new CompareTables(mockLogger.Object);
 
             // Act
             var result = systemUnderTest.CompareContent(tableName, s1, s2);
@@ -36,10 +39,11 @@ namespace DBSnapshotAnalyzer.Compare.UT.Models
         public void Compare_Table1NewValue()
         {
             // Arrange
+            var mockLogger = new Mock<ILogger>();
             string tableName = "table1";
             string s1 = "aaa,bbb,ccc,ddd\n111,222,333";
             string s2 = "aaa,bbb,ccc\n111,222,333";
-            var systemUnderTest = new CompareTables();
+            var systemUnderTest = new CompareTables(mockLogger.Object);
 
             // Act
             var result = systemUnderTest.CompareContent(tableName, s1, s2);
@@ -62,10 +66,11 @@ namespace DBSnapshotAnalyzer.Compare.UT.Models
         public void Compare_Table2NewValue()
         {
             // Arrange
+            var mockLogger = new Mock<ILogger>();
             string tableName = "table1";
             string s1 = "aaa,bbb,ccc\n111,222,333";
             string s2 = "aaa,bbb,ccc,ddd\n111,222,333";
-            var systemUnderTest = new CompareTables();
+            var systemUnderTest = new CompareTables(mockLogger.Object);
 
             // Act
             var result = systemUnderTest.CompareContent(tableName, s1, s2);
@@ -92,7 +97,8 @@ namespace DBSnapshotAnalyzer.Compare.UT.Models
         public void ConvertChangeType_InsertTest()
         {
             // Arrange 
-            var systemUnderTest = new CompareTables();
+            var mockLogger = new Mock<ILogger>();
+            var systemUnderTest = new CompareTables(mockLogger.Object);
 
             // Act
             var result = systemUnderTest.ConvertChangeType(DiffPlex.DiffBuilder.Model.ChangeType.Inserted);
@@ -108,7 +114,8 @@ namespace DBSnapshotAnalyzer.Compare.UT.Models
         public void ConvertChangeType_DeletedTest()
         {
             // Arrange 
-            var systemUnderTest = new CompareTables();
+            var mockLogger = new Mock<ILogger>();
+            var systemUnderTest = new CompareTables(mockLogger.Object);
 
             // Act
             var result = systemUnderTest.ConvertChangeType(DiffPlex.DiffBuilder.Model.ChangeType.Deleted);

@@ -8,11 +8,18 @@
 
   <ItemGroup>
     <PackageReference Include="DiffPlex" Version="1.7.1" />
+    <PackageReference Include="NLog" Version="5.2.0" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\DBSnapshotAnalyzer.Common\DBSnapshotAnalyzer.Common.csproj" />
     <ProjectReference Include="..\DBSnapshotAnalyzer.Snapshot\DBSnapshotAnalyzer.Snapshot.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="DBSnapshotAnalyzer.Console.exe.nlog">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>

@@ -1,4 +1,6 @@
 ﻿using DBSnapshotAnalyzer.Compare.Models;
+using Moq;
+using NLog;
 using System.Diagnostics.CodeAnalysis;
 
 namespace DBSnapshotAnalyzer.Compare.UT.Models
@@ -13,6 +15,7 @@ namespace DBSnapshotAnalyzer.Compare.UT.Models
         public void saveTest()
         {
             // Arrange
+            var mockLogger = new Mock<ILogger>();
             string tableName = "table1";
             string row1 = "111,222,333";
             string row2 = "aaa,bbb,ccc";
@@ -20,7 +23,7 @@ namespace DBSnapshotAnalyzer.Compare.UT.Models
             Change change2 = Change.Deleted;
             var c1 = new Comparison() { TableName = tableName, Change = change1, Row = row1 };
             var c2 = new Comparison() { TableName = tableName, Change = change2, Row = row2 };
-            var systemUnderTest = new CompareBase();
+            var systemUnderTest = new CompareBase(mockLogger.Object);
 
             // Act
             systemUnderTest.Save(_fileName, new List<Comparison> { c1, c2 });

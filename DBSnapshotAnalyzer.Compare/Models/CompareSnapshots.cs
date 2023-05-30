@@ -1,4 +1,5 @@
 ﻿using DBSnapshotAnalyzer.Common.Interfaces;
+using NLog;
 
 namespace DBSnapshotAnalyzer.Compare.Models
 {
@@ -10,7 +11,7 @@ namespace DBSnapshotAnalyzer.Compare.Models
         #endregion
 
         #region Constructor
-        public CompareSnapshots(IFileSystemService fileSystem, IZipService zip)
+        public CompareSnapshots(ILogger log, IFileSystemService fileSystem, IZipService zip) : base(log)
         {
             _fileSystem = fileSystem;
             _zip = zip;
@@ -25,17 +26,17 @@ namespace DBSnapshotAnalyzer.Compare.Models
         /// <returns></returns>
         public override List<Comparison> Compare(string snapshot1, string snapshot2)
         {
-            Console.WriteLine("Opening snapshot files");
+            _log.Trace("Opening snapshot files");
             string snapshotFolder1 = _zip.OpenSnapshot(snapshot1);
             string snapshotFolder2 = _zip.OpenSnapshot(snapshot2);
 
-            Console.WriteLine("Comparing snapshots");
+            _log.Trace("Comparing snapshots");
             var result = new List<Comparison>();
-            var ct = new CompareTables();
+            var ct = new CompareTables(_log);
             foreach (var filename in _fileSystem.GetFileNamesFromSnapshot(snapshotFolder1, snapshotFolder2))
             {
                 string tableName = _fileSystem.GetTableNameFromFileName(filename);
-                Console.WriteLine($"Comparing table {tableName}");
+                _log.Trace($"Comparing table {tableName}");
 
                 try
                 {
@@ -53,7 +54,7 @@ namespace DBSnapshotAnalyzer.Compare.Models
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine($"Failed to compare {tableName} because {ex.Message}");
+                    _log.Error(ex, $"Failed to compare {tableName} because {ex.Message}");
                 }
             }
 

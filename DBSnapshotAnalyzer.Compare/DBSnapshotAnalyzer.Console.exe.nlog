@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<nlog xmlns="http://www.nlog-project.org/schemas/NLog.xsd"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.nlog-project.org/schemas/NLog.xsd NLog.xsd"
+      autoReload="true"
+      throwExceptions="false"
+      internalLogLevel="On" internalLogFile="c:\temp\nlog-internal.log" >
+
+  <targets>
+    <target
+      xsi:type="ColoredConsole"
+      name="console"
+      layout="${longdate}|${level:uppercase=true}|${logger}|${message}" />
+    <target xsi:type="File" name="file" fileName="${basedir}/Logs/Diagnostic.log"
+        layout="${longdate} ${uppercase:${level}} ${logger} - ${message} ${onexception: ${exception:format=ShortType,Message}}"
+        archiveFileName="${basedir}/Logs/Diagnostic_{#}.log"
+        archiveEvery="Day"
+        archiveNumbering="DateAndSequence"
+        archiveDateFormat="yyyy-MM-dd"
+        maxArchiveFiles="30"/>
+    <target xsi:type="File" name="error" fileName="${basedir}/Logs/Errors.log"
+        layout="${newline}${longdate}  ${uppercase:${level}} ${message} ${onexception: ${newline}${exception:format=ToString}}"
+        archiveFileName="${basedir}/Logs/Errors_{#}.log"
+        archiveEvery="Day"
+        archiveNumbering="DateAndSequence"
+        archiveDateFormat="yyyy-MM-dd"
+        maxArchiveFiles="30"/>
+  </targets>
+  <rules>
+    <logger name="*" minlevel="Debug" writeTo="error"/>
+    <logger name="*" minlevel="Trace" writeTo="file" />
+    <logger name="*" minlevel="Trace" writeTo="console" />
+  </rules>
+</nlog>

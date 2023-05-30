@@ -1,9 +1,21 @@
 ﻿using DBSnapshotAnalyzer.Common.Interfaces;
+using NLog;
 
 namespace DBSnapshotAnalyzer.Common.Services
 {
     public class FileSystemService : IFileSystemService
     {
+        #region Private Members
+        private readonly ILogger _log;
+        #endregion
+
+        #region Constructor
+        public FileSystemService(ILogger log) 
+        { 
+            _log = log;
+        }
+        #endregion
+
         /// <summary>
         /// Create output folder
         /// </summary>
@@ -13,10 +25,10 @@ namespace DBSnapshotAnalyzer.Common.Services
         {
             try
             {
-                Console.WriteLine($"Checking if output folder exists {outputFolder}");
+                _log.Trace($"Checking if output folder exists {outputFolder}");
                 if (Directory.Exists(outputFolder) == false)
                 {
-                    Console.WriteLine($"Creating output folder {outputFolder}");
+                    _log.Trace($"Creating output folder {outputFolder}");
                     Directory.CreateDirectory(outputFolder);
                 }
             }
@@ -58,7 +70,7 @@ namespace DBSnapshotAnalyzer.Common.Services
             try
             {
                 string? path = Path.GetDirectoryName(fileName);
-                Console.WriteLine($"Checking if directory {path} exists");
+                _log.Trace($"Checking if directory {path} exists");
                 if (path != null && Path.Exists(path) == false)
                 {
 
@@ -79,12 +91,12 @@ namespace DBSnapshotAnalyzer.Common.Services
         {
             try
             {
-                Console.WriteLine($"Removing folder {outputFolder}");
+                _log.Trace($"Removing folder {outputFolder}");
                 Directory.Delete(outputFolder, true);
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Failed to remove temporary folder {outputFolder} because {ex.Message}");
+                _log.Error(ex, $"Failed to remove temporary folder {outputFolder} because {ex.Message}");
             }
         }
 

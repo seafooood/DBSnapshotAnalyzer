@@ -39,7 +39,6 @@ try
 catch (Exception ex)
 {
     Console.WriteLine($"Fatal error {ex.Message}");
-    throw;
 }
 
 Console.WriteLine("=== Finished DBSnapshotAnalyzer ===");

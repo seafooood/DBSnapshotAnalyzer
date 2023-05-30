@@ -1,9 +1,4 @@
 ﻿using DBSnapshotAnalyzer.Common.Services;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DBSnapshotAnalyzer.Compare.Models
 {
@@ -48,10 +43,10 @@ namespace DBSnapshotAnalyzer.Compare.Models
             return result;
         }
 
-        public virtual List<Comparison> Compare(string snapshot1, string snapshot2) 
-        { 
+        public virtual List<Comparison> Compare(string snapshot1, string snapshot2)
+        {
             throw new NotImplementedException();
         }
-        
+
     }
 }

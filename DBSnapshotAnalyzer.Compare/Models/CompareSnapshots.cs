@@ -1,9 +1,22 @@
-﻿using DBSnapshotAnalyzer.Common.Services;
+﻿using DBSnapshotAnalyzer.Common.Interfaces;
 
 namespace DBSnapshotAnalyzer.Compare.Models
 {
     public class CompareSnapshots : CompareBase
     {
+        #region Private Members
+        private readonly IFileSystemService _fileSystem;
+        private readonly IZipService _zip;
+        #endregion
+
+        #region Constructor
+        public CompareSnapshots(IFileSystemService fileSystem, IZipService zip)
+        {
+            _fileSystem = fileSystem;
+            _zip = zip;
+        }
+        #endregion
+
         /// <summary>
         /// Compare two snapshots
         /// </summary>
@@ -13,21 +26,19 @@ namespace DBSnapshotAnalyzer.Compare.Models
         public override List<Comparison> Compare(string snapshot1, string snapshot2)
         {
             Console.WriteLine("Opening snapshot files");
-            var zs = new ZipService();
-            string snapshotFolder1 = zs.OpenSnapshot(snapshot1);
-            string snapshotFolder2 = zs.OpenSnapshot(snapshot2);
+            string snapshotFolder1 = _zip.OpenSnapshot(snapshot1);
+            string snapshotFolder2 = _zip.OpenSnapshot(snapshot2);
 
             Console.WriteLine("Comparing snapshots");
-            var result = new List<Comparison> ();
+            var result = new List<Comparison>();
             var ct = new CompareTables();
-            var fss = new FileSystemService();
-            foreach (var filename in fss.GetFileNamesFromSnapshot(snapshotFolder1, snapshotFolder2)) 
+            foreach (var filename in _fileSystem.GetFileNamesFromSnapshot(snapshotFolder1, snapshotFolder2))
             {
-                string tableName = fss.GetTableNameFromFileName(filename);
+                string tableName = _fileSystem.GetTableNameFromFileName(filename);
                 Console.WriteLine($"Comparing table {tableName}");
 
                 try
-                {                   
+                {
                     string filePath1 = Path.Combine(snapshotFolder1, filename);
                     string filePath2 = Path.Combine(snapshotFolder2, filename);
 
@@ -40,17 +51,17 @@ namespace DBSnapshotAnalyzer.Compare.Models
                         result.Add(new Comparison() { TableName = tableName, Change = Change.Deleted });
                     }
                 }
-                catch(Exception ex)
+                catch (Exception ex)
                 {
                     Console.WriteLine($"Failed to compare {tableName} because {ex.Message}");
                 }
             }
 
             // Remove snapshot folders
-            fss.RemoveTemporaryFolder(snapshotFolder1);
-            fss.RemoveTemporaryFolder(snapshotFolder2);
+            _fileSystem.RemoveTemporaryFolder(snapshotFolder1);
+            _fileSystem.RemoveTemporaryFolder(snapshotFolder2);
 
             return result;
-        }        
+        }
     }
 }

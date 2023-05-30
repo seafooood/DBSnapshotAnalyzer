@@ -1,13 +1,10 @@
 ﻿using DBSnapshotAnalyzer.Compare.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Diagnostics.CodeAnalysis;
 
 namespace DBSnapshotAnalyzer.Compare.UT.Models
 {
     [TestFixture]
+    [ExcludeFromCodeCoverage]
     public class ComparisonTests
     {
         /// <summary>

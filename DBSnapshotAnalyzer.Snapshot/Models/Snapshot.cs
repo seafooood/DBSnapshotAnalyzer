@@ -1,16 +1,15 @@
-﻿using System;
-using System.Data;
-using System.IO;
-using DBSnapshotAnalyzer.Common.Services;
+﻿using DBSnapshotAnalyzer.Common.Interfaces;
 using DBSnapshotAnalyzer.Snapshot.Interfaces;
+using System.Data;
 
 namespace DBSnapshotAnalyzer.Snapshot.Models
 {
     public class Snapshot
     {
         #region Private Members
-
         private readonly IDatabaseService _db;
+        private readonly IFileSystemService _fileSystem;
+        private readonly IZipService _zip;
         #endregion
 
         #region Constructor
@@ -18,9 +17,11 @@ namespace DBSnapshotAnalyzer.Snapshot.Models
         /// Constructor
         /// </summary>
         /// <param name="db">Database connection</param>
-        public Snapshot(IDatabaseService db)
+        public Snapshot(IDatabaseService db, IFileSystemService fileSystemService, IZipService zipService)
         {
             _db = db;
+            _fileSystem = fileSystemService;
+            _zip = zipService;
         }
         #endregion
 
@@ -31,16 +32,14 @@ namespace DBSnapshotAnalyzer.Snapshot.Models
         /// <param name="outputFolder">Snapshot output file</param>
         public void Take(string snapshotFilename)
         {
-            var fss = new FileSystemService();
-            string outputFolder = fss.CreateTemporaryFolder();
+            string outputFolder = _fileSystem.CreateTemporaryFolder();
 
             foreach (var tableName in _db.GetTableNames())
             {
                 ExportTable(tableName, outputFolder);
             }
 
-            var zs = new ZipService();
-            zs.SaveSnapshot(snapshotFilename, outputFolder);
+            _zip.SaveSnapshot(snapshotFilename, outputFolder);
         }
 
         /// <summary>

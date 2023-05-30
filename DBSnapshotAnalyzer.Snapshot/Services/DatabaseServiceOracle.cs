@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using DBSnapshotAnalyzer.Snapshot.Interfaces;
+﻿using DBSnapshotAnalyzer.Snapshot.Interfaces;
 using Oracle.ManagedDataAccess.Client;
+using System.Data;
 
 namespace DBSnapshotAnalyzer.Snapshot.Services
 {
@@ -86,7 +84,7 @@ namespace DBSnapshotAnalyzer.Snapshot.Services
         /// <returns></returns>
         private List<string> ConvertDataTableToList(DataTable dataTable)
         {
-            List<string> resultList = new List<string>();
+            var resultList = new List<string>();
 
             // Iterate through each row in the DataTable
             foreach (DataRow row in dataTable.Rows)
@@ -95,7 +93,9 @@ namespace DBSnapshotAnalyzer.Snapshot.Services
                 foreach (DataColumn column in dataTable.Columns)
                 {
                     // Add the value of the column to the result list
+#pragma warning disable CS8604 // Possible null reference argument.
                     resultList.Add(row[column].ToString());
+#pragma warning restore CS8604 // Possible null reference argument.
                 }
             }
 

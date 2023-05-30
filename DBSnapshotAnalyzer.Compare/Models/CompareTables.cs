@@ -1,11 +1,11 @@
-﻿using DiffPlex.DiffBuilder.Model;
+﻿using DiffPlex;
 using DiffPlex.DiffBuilder;
-using DiffPlex;
+using DiffPlex.DiffBuilder.Model;
 
 namespace DBSnapshotAnalyzer.Compare.Models
 {
     public class CompareTables : CompareBase
-    {        
+    {
         /// <summary>
         /// Compare the contents of two files
         /// </summary>
@@ -15,7 +15,7 @@ namespace DBSnapshotAnalyzer.Compare.Models
         /// <returns></returns>
         public override List<Comparison> Compare(string file1, string file2)
         {
-            return CompareContent("", File.ReadAllText(file1), File.ReadAllText(file2));    
+            return CompareContent("", File.ReadAllText(file1), File.ReadAllText(file2));
         }
 
         /// <summary>
@@ -72,12 +72,12 @@ namespace DBSnapshotAnalyzer.Compare.Models
                 return Change.Inserted;
             }
 
-            if (type == ChangeType.Deleted) 
+            if (type == ChangeType.Deleted)
             {
                 return Change.Deleted;
             }
 
             throw new Exception($"Unable to convert ChangeType {type}");
-        }        
+        }
     }
 }

@@ -1,19 +1,24 @@
+using DBSnapshotAnalyzer.Common.Services;
 using DBSnapshotAnalyzer.Compare.Models;
+using System.Diagnostics.CodeAnalysis;
 
 namespace DBSnapshotAnalyzer.Compare.UT.Models
 {
     [TestFixture]
+    [ExcludeFromCodeCoverage]
     public class CompareSnapshotsTests
     {
         #region Compare Tests
 
         [Test]
-        public void CompareSnapshot_ChangeInS2Test() 
+        public void CompareSnapshot_ChangeInS2Test()
         {
             // Arrange
+            var fileSystem = new FileSystemService();
+            var zip = new ZipService(fileSystem);
             var s1 = Path.Combine(TestContext.CurrentContext.TestDirectory, "TestData", "s1.zip");
             var s2 = Path.Combine(TestContext.CurrentContext.TestDirectory, "TestData", "s2.zip");
-            var systemUnderTest = new CompareSnapshots();
+            var systemUnderTest = new CompareSnapshots(fileSystem, zip);
 
             // Act
             var result = systemUnderTest.Compare(s1, s2);

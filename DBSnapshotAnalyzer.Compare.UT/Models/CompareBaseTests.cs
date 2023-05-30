@@ -1,8 +1,10 @@
 ﻿using DBSnapshotAnalyzer.Compare.Models;
+using System.Diagnostics.CodeAnalysis;
 
 namespace DBSnapshotAnalyzer.Compare.UT.Models
 {
     [TestFixture]
+    [ExcludeFromCodeCoverage]
     public class CompareBaseTests
     {
         #region Save Tests

@@ -1,5 +1,9 @@
+using System.Diagnostics.CodeAnalysis;
+
 namespace DBSnapshotAnalyzer.Snapshot.UT
 {
+    [TestFixture]
+    [ExcludeFromCodeCoverage]
     public class Tests
     {
         [SetUp]

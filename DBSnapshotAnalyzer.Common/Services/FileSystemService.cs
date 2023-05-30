@@ -1,9 +1,8 @@
-﻿
-using System;
+﻿using DBSnapshotAnalyzer.Common.Interfaces;
 
 namespace DBSnapshotAnalyzer.Common.Services
 {
-    public class FileSystemService
+    public class FileSystemService : IFileSystemService
     {
         /// <summary>
         /// Create output folder
@@ -44,8 +43,8 @@ namespace DBSnapshotAnalyzer.Common.Services
                 return path;
             }
             catch (Exception ex)
-            { 
-                throw new Exception($"Failed to create temporary folder because {ex.Message}", ex); 
+            {
+                throw new Exception($"Failed to create temporary folder because {ex.Message}", ex);
             }
         }
 
@@ -62,11 +61,11 @@ namespace DBSnapshotAnalyzer.Common.Services
                 Console.WriteLine($"Checking if directory {path} exists");
                 if (path != null && Path.Exists(path) == false)
                 {
-                    
+
                     CreateOutputFolder(path);
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 throw new Exception($"Failed to create folder for file {fileName} because {ex.Message}", ex);
             }
@@ -86,7 +85,7 @@ namespace DBSnapshotAnalyzer.Common.Services
             catch (Exception ex)
             {
                 Console.WriteLine($"Failed to remove temporary folder {outputFolder} because {ex.Message}");
-            }            
+            }
         }
 
         /// <summary>

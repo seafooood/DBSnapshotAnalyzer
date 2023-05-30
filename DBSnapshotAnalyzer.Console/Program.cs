@@ -1,11 +1,12 @@
 ﻿using DBSnapshotAnalyzer.Compare;
+using NLog;
 
-//TODO: Convert console logs to nlog
-Console.WriteLine("=== Starting DBSnapshotAnalyzer ===");
+var _log = LogManager.GetCurrentClassLogger();
+_log.Info("=== Starting DBSnapshotAnalyzer ===");
 
 try
 {
-    var sa = new SnapshotAnalyzer();
+    var sa = new SnapshotAnalyzer(_log);
     if (args.Length > 0)
     {
         //TODO: Improve arg parsing
@@ -38,7 +39,7 @@ try
 }
 catch (Exception ex)
 {
-    Console.WriteLine($"Fatal error {ex.Message}");
+    _log.Fatal($"Fatal error {ex.Message}", ex);
 }
 
-Console.WriteLine("=== Finished DBSnapshotAnalyzer ===");
+_log.Info("=== Finished DBSnapshotAnalyzer ===");

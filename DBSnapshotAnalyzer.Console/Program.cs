@@ -26,13 +26,8 @@ try
 
             case "s":
             case "snapshot":
-                // s "c:\s1\s1.zip"
-                if (args.Length < 1)
-                {
-                    throw new Exception("Missing argument output file");
-                }
-                var connectionString = "Data Source=(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=localhost)(PORT=1521))(CONNECT_DATA=(SERVICE_NAME=XE)));User Id=bookshop;Password=mypassword;"; //TODO: Get connection string from settings
-                sa.TakeSnapshot(connectionString, args[1]);
+                // s "Data Source=(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=localhost)(PORT=1521))(CONNECT_DATA=(SERVICE_NAME=XE)));User Id=bookshop;Password=mypassword;" "c:\s1\s1.zip"                
+                sa.TakeSnapshot(args[1], args[2]);
                 break;
         }
     }

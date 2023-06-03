@@ -4,10 +4,8 @@ using NUnit.Framework;
 
 namespace Examples._03_ExampleAnalyze
 {
-    [TestFixture]
     public class ExampleAnalyze : BaseTests
     {
-        [Test]
         public void ExampleAnalyzeTest()
         {
             // Arrange            

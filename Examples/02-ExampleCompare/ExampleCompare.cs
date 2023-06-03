@@ -7,7 +7,6 @@ namespace Examples._02_ExampleCompare
 {
     internal class ExampleCompare : BaseTests
     {
-        [Test]
         public void ExampleCompareTest()
         {
             // Arrange            

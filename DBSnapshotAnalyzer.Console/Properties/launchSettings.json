@@ -2,7 +2,7 @@
   "profiles": {
     "DBSnapshotAnalyzer.Console": {
       "commandName": "Project",
-      "commandLineArgs": "a \"c:\\s1\\d1.txt\" \"c:\\s1\\d2.txt\" \"c:\\s1\\a1.txt\""
+      "commandLineArgs": "c"
     }
   }
 }

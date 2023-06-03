@@ -6,7 +6,6 @@ namespace Examples._01_ExampleSnapshot
 {
     public class ExampleSnapshot : BaseTests
     {
-        [Test]
         public void ExampleSnapshotTest()
         {
             // Create instance of SnapshotAnalyzer

@@ -1,4 +1,7 @@
-﻿using DBSnapshotAnalyzer.Compare;
+﻿using Commander.NET;
+using Commander.NET.Exceptions;
+using DBSnapshotAnalyzer.Compare;
+using DBSnapshotAnalyzer.Console;
 using NLog;
 
 var _log = LogManager.GetCurrentClassLogger();
@@ -7,34 +10,39 @@ _log.Info("=== Starting DBSnapshotAnalyzer ===");
 try
 {
     var sa = new SnapshotAnalyzer(_log);
-    if (args.Length > 0)
+    var cp = new CommanderParser<Commands>().Add(args).Parse();
+
+    if (cp.AnalyzeComparisonsCommand != null)
     {
-        //TODO: Improve arg parsing
-        switch (args[0])
-        {
-            case "a":
-            case "analyze":
-                // a "c:\s1\d1.txt" "c:\s1\d2.txt" "c:\s1\a1.txt"
-                sa.AnalyzeComparisons(args[1], args[2], args[3]);
-                break;
-
-            case "c":
-            case "compare":
-                // c "c:\s1\s1.zip" "c:\s1\s2.zip" "c:\s1\d.txt"
-                sa.CompareSnapshots(args[1], args[2], args[3]);
-                break;
-
-            case "s":
-            case "snapshot":
-                // s "Data Source=(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=localhost)(PORT=1521))(CONNECT_DATA=(SERVICE_NAME=XE)));User Id=bookshop;Password=mypassword;" "c:\s1\s1.zip"                
-                sa.TakeSnapshot(args[1], args[2]);
-                break;
-        }
+        sa.AnalyzeComparisons(cp.AnalyzeComparisonsCommand.ComparisonFile1, cp.AnalyzeComparisonsCommand.ComparisonFile2, cp.AnalyzeComparisonsCommand.AnalyzeFile1);
     }
+    else if (cp.CompareSnapshotsCommand != null) 
+    {
+        sa.CompareSnapshots(cp.CompareSnapshotsCommand.SnapshotFile1, cp.CompareSnapshotsCommand.SnapshotFile2, cp.CompareSnapshotsCommand.ComparisonFile);
+    }
+    else if (cp.TakeSnapshotCommand != null) 
+    {
+        sa.TakeSnapshot(cp.TakeSnapshotCommand.ConnectionString, cp.TakeSnapshotCommand.SnapshotFile);
+    }
+}
+catch (ParameterMissingException ex)
+{
+    // A required parameter was missing
+    _log.Fatal("Missing parameter: " + ex.ParameterName, ex);
+}
+catch (ParameterFormatException ex)
+{
+    /*
+	*	A string-parsing method raised a FormatException
+	*	ex.ParameterName
+	*	ex.Value
+	*	ex.RequiredType
+	*/
+    _log.Fatal(ex.Message, ex);
 }
 catch (Exception ex)
 {
-    _log.Fatal($"Fatal error {ex.Message}", ex);
+    _log.Fatal($"Fatal error {ex.Message} {ex?.InnerException?.Message}", ex);
 }
 
 _log.Info("=== Finished DBSnapshotAnalyzer ===");

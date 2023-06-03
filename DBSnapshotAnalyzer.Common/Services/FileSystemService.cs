@@ -71,7 +71,7 @@ namespace DBSnapshotAnalyzer.Common.Services
             {
                 string? path = Path.GetDirectoryName(fileName);
                 _log.Trace($"Checking if directory {path} exists");
-                if (path != null && Path.Exists(path) == false)
+                if (string.IsNullOrEmpty(path) == false && Path.Exists(path) == false)
                 {
 
                     CreateOutputFolder(path);

@@ -19,3 +19,5 @@
 /DBSnapshotAnalyzer.Common/obj
 /DBSnapshotAnalyzer.Common.UT/obj
 /DBSnapshotAnalyzer.Common.UT/bin/Debug/net7.0
+/Examples/bin/Debug/net7.0
+/Examples/obj

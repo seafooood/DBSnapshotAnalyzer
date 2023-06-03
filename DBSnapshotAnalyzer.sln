@@ -13,9 +13,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DBSnapshotAnalyzer.Compare"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DBSnapshotAnalyzer.Compare.UT", "DBSnapshotAnalyzer.Compare.UT\DBSnapshotAnalyzer.Compare.UT.csproj", "{11A025F1-B6EF-4BAD-AC4F-26A41858DF61}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DBSnapshotAnalyzer.Common", "DBSnapshotAnalyzer.Common\DBSnapshotAnalyzer.Common.csproj", "{BA4F3349-9449-4248-BAB1-03D1218443C6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DBSnapshotAnalyzer.Common", "DBSnapshotAnalyzer.Common\DBSnapshotAnalyzer.Common.csproj", "{BA4F3349-9449-4248-BAB1-03D1218443C6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DBSnapshotAnalyzer.Common.UT", "DBSnapshotAnalyzer.Common.UT\DBSnapshotAnalyzer.Common.UT.csproj", "{D16138A5-5121-419E-B2DA-50D9FEF5B7D2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DBSnapshotAnalyzer.Common.UT", "DBSnapshotAnalyzer.Common.UT\DBSnapshotAnalyzer.Common.UT.csproj", "{D16138A5-5121-419E-B2DA-50D9FEF5B7D2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Examples", "Examples\Examples.csproj", "{7C67A89C-E565-4CBF-A17D-476BBF48ADA5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,6 +53,10 @@ Global
 		{D16138A5-5121-419E-B2DA-50D9FEF5B7D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D16138A5-5121-419E-B2DA-50D9FEF5B7D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D16138A5-5121-419E-B2DA-50D9FEF5B7D2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7C67A89C-E565-4CBF-A17D-476BBF48ADA5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7C67A89C-E565-4CBF-A17D-476BBF48ADA5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7C67A89C-E565-4CBF-A17D-476BBF48ADA5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7C67A89C-E565-4CBF-A17D-476BBF48ADA5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
